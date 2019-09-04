@@ -13,26 +13,26 @@ public class AL01B {
      * @return The time estimate or exact time in YEARS.
      */
     public String timeToComputeRecursiveFibonacci(int n) {
-        BigDecimal processorSpeed = BigDecimal.valueOf(0.0000000005);
+        BigDecimal processorSpeed = BigDecimal.valueOf(0.0000001);
         BigDecimal amountOfOperations = BigDecimal.valueOf(2);
         BigDecimal branches = iterativeF(n);
         BigDecimal secondsInAYear = BigDecimal.valueOf(31556926);
-        return String.valueOf(branches.multiply(amountOfOperations).multiply(processorSpeed).divide(secondsInAYear, 100, RoundingMode.HALF_UP));
+        return String.valueOf(branches.multiply(amountOfOperations).multiply(processorSpeed).divide(secondsInAYear, 10, RoundingMode.HALF_UP));
     }
 
-    public static BigDecimal iterativeF(int n) {
+    private BigDecimal iterativeF(int n) {
         if (n < 3) {
             return BigDecimal.valueOf(n);
         }
-        int temp = 0;
-        int x = 1;
-        int y = 1;
+        BigDecimal temp = BigDecimal.valueOf(0);
+        BigDecimal x = BigDecimal.valueOf(1);
+        BigDecimal y = BigDecimal.valueOf(1);
         for (int i = 0; i < n - 2; i++) {
             temp = x;
-            x = y + x;
+            x = y.add(x).add(BigDecimal.ONE);
             y = temp;
         }
-        return BigDecimal.valueOf(x);
+        return x;
     }
 
     /**
@@ -47,4 +47,11 @@ public class AL01B {
             return BigInteger.valueOf(n);
         return recursiveF(n - 1).add(recursiveF(n - 2));
     }
+
+    public static void main(String[] args) {
+        AL01B test = new AL01B();
+        System.out.println(test.timeToComputeRecursiveFibonacci(50));
+        System.out.println(test.timeToComputeRecursiveFibonacci(69));
+    }
+
 }
