@@ -3,12 +3,12 @@ package ee.ttu.algoritmid.fibonacci;
 public class AL01A {
 
     /**
-     * Compute the Fibonacci sequence number.
+     * Compute the Fibonacci sequence number. Trying to push again.
      *
      * @param n The number of the sequence to compute.
      * @return The n-th number in Fibonacci series.
      */
-    public static String iterativeF(int n) {
+    public String iterativeF(int n) {
         if (n < 3) {
             return "1";
         }
@@ -22,9 +22,4 @@ public class AL01A {
         }
         return String.valueOf(x);
     }
-
-    public static void main(String[] args) {
-        System.out.println(iterativeF(5));
-    }
-
 }

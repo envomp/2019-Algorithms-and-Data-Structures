@@ -1,5 +1,6 @@
 package ee.ttu.algoritmid.fibonacci;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 public class AL01B {
@@ -11,8 +12,25 @@ public class AL01B {
      * @return The time estimate or exact time in YEARS.
      */
     public String timeToComputeRecursiveFibonacci(int n) {
-        // TODO
-        return "";
+        BigDecimal processorSpeed = BigDecimal.valueOf(0.0000000005);
+        BigDecimal amountOfOperations = BigDecimal.valueOf(2);
+        BigDecimal branches = iterativeF(n);
+        return String.valueOf(branches.multiply(amountOfOperations).multiply(processorSpeed));
+    }
+
+    public static BigDecimal iterativeF(int n) {
+        if (n < 3) {
+            return BigDecimal.valueOf(n);
+        }
+        int temp = 0;
+        int x = 1;
+        int y = 1;
+        for (int i = 0; i < n - 2; i++) {
+            temp = x;
+            x = y + x;
+            y = temp;
+        }
+        return BigDecimal.valueOf(x);
     }
 
     /**
