@@ -1,5 +1,7 @@
 package ee.ttu.algoritmid.fibonacci;
 
+import java.math.BigDecimal;
+
 public class AL01A {
 
     /**
@@ -12,12 +14,12 @@ public class AL01A {
         if (n < 3) {
             return "1";
         }
-        int temp = 0;
-        int x = 1;
-        int y = 1;
+        BigDecimal temp = BigDecimal.valueOf(0);
+        BigDecimal x = BigDecimal.valueOf(1);
+        BigDecimal y = BigDecimal.valueOf(1);
         for (int i = 0; i < n - 2; i++) {
             temp = x;
-            x = y + x;
+            x = y.add(x);
             y = temp;
         }
         return String.valueOf(x);

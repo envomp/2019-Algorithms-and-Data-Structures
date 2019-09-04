@@ -15,7 +15,8 @@ public class AL01B {
         BigDecimal processorSpeed = BigDecimal.valueOf(0.0000000005);
         BigDecimal amountOfOperations = BigDecimal.valueOf(2);
         BigDecimal branches = iterativeF(n);
-        return String.valueOf(branches.multiply(amountOfOperations).multiply(processorSpeed));
+        BigDecimal secondsInAYear = BigDecimal.valueOf(31556926);
+        return String.valueOf(branches.multiply(amountOfOperations).multiply(processorSpeed).divide(secondsInAYear));
     }
 
     public static BigDecimal iterativeF(int n) {
