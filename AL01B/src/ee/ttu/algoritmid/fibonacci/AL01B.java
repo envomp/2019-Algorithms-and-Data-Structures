@@ -2,6 +2,7 @@ package ee.ttu.algoritmid.fibonacci;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 
 public class AL01B {
 
@@ -16,7 +17,7 @@ public class AL01B {
         BigDecimal amountOfOperations = BigDecimal.valueOf(2);
         BigDecimal branches = iterativeF(n);
         BigDecimal secondsInAYear = BigDecimal.valueOf(31556926);
-        return String.valueOf(branches.multiply(amountOfOperations).multiply(processorSpeed).divide(secondsInAYear));
+        return String.valueOf(branches.multiply(amountOfOperations).multiply(processorSpeed).divide(secondsInAYear, 100, RoundingMode.HALF_UP));
     }
 
     public static BigDecimal iterativeF(int n) {
