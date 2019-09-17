@@ -25,7 +25,7 @@ public class GuessingGame {
         Integer end = cities.size();
 
         while (true) {
-            Integer guess = (end - start) / 2 + start;
+            Integer guess = ((end - start) >> 1) + start;
             String answer = oracle.isIt(cities.get(guess));
             if (answer.equals("correct!")) {
                 return cities.get(guess).getName();
