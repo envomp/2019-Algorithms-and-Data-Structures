@@ -3,17 +3,22 @@ import java.util.*;
 class MaxHeap {
     ArrayList<Node<Integer>> treeAsArray = new ArrayList<>();
 
-    void enqueue(MaxHeap maxHeap, int element) {
+    void enqueue(int element) {
         Node<Integer> node = new Node<>(element);
-        maxHeap.treeAsArray.add(node);
-        maxHeap.balance();
-        maxHeap.reAddNodes();
+        treeAsArray.add(node);
+        for (int i = log2(treeAsArray.size()); i > 0; i--) {
+            balance();
+        }
+        reAddNodes();
     }
 
-    void dequeue(MaxHeap maxHeap, int toBeRemoved) {
-        maxHeap.treeAsArray.remove(toBeRemoved);
-        maxHeap.balance();
-        maxHeap.reAddNodes();
+    void dequeue(int toBeRemoved) {
+        Collections.swap(treeAsArray, 0, treeAsArray.size() - 1);
+        treeAsArray.remove(treeAsArray.size() - 1);
+        for (int i = log2(treeAsArray.size()); i > 0; i--) {
+            balance();
+        }
+        reAddNodes();
     }
 
     void balance() {
@@ -123,7 +128,6 @@ class BinarySearchTree {
     }
 }
 
-
 public class Lesson_2 {
 
     private static void one() {
@@ -131,21 +135,26 @@ public class Lesson_2 {
         MaxHeap maxHeap = new MaxHeap();
         maxHeap.treeAsArray = new ArrayList<>();
 
-        for (int element : new int[]{4, 2, 1, 7, 3, 5, 6}) {
+        for (int element : new int[]{15, 9, 24, 48, 21}) {
 
             System.out.println(String.format("Added %d", element));
-            maxHeap.enqueue(maxHeap, element);
+            maxHeap.enqueue(element);
             System.out.println(maxHeap.treeAsArray);
             BTreePrinter.printNode(maxHeap.treeAsArray.get(0));
         }
-        for (int i = 0; i < 3; i++) {
+        System.out.println(String.format("Removed %d", maxHeap.treeAsArray.get(0).data));
+        maxHeap.dequeue(0);
+        System.out.println(maxHeap.treeAsArray);
+        BTreePrinter.printNode(maxHeap.treeAsArray.get(0));
 
-            int toBeRemoved = 0;
-            System.out.println(String.format("Removed %d", maxHeap.treeAsArray.get(toBeRemoved).data));
-            maxHeap.dequeue(maxHeap, toBeRemoved);
+        for (int element : new int[]{25}) {
+
+            System.out.println(String.format("Added %d", element));
+            maxHeap.enqueue(element);
             System.out.println(maxHeap.treeAsArray);
             BTreePrinter.printNode(maxHeap.treeAsArray.get(0));
         }
+
     }
 
     private static void two() {
@@ -153,7 +162,7 @@ public class Lesson_2 {
         BinarySearchTree binarySearchTree = new BinarySearchTree();
         Node<Integer> root = null;
 
-        for (int element : new int[]{4, 2, 1, 7, 3, 5, 6}) {
+        for (int element : new int[]{41, 79, 38, 31, 45}) {
 
             System.out.println(String.format("Added %d", element));
             root = binarySearchTree.insertRec(root, element, root);
@@ -163,7 +172,16 @@ public class Lesson_2 {
         System.out.println(String.format("Removed %d", root.data));
         root = binarySearchTree.deleteRec(root, root.data);
         BTreePrinter.printNode(root);
+
+        for (int element : new int[]{44, 24}) {
+
+            System.out.println(String.format("Added %d", element));
+            root = binarySearchTree.insertRec(root, element, root);
+            BTreePrinter.printNode(root);
+        }
+
         System.out.println(binarySearchTree.getSortedList(root));
+
     }
 
     private static void three() {
@@ -194,15 +212,13 @@ public class Lesson_2 {
         return stack.isEmpty();
     }
 
-
     public static void main(String[] args) {
         one();
         two();
-        three();
+        //three();
     }
 
 }
-
 
 class Node<T extends Comparable<?>> {
     Node<T> left, right, parent;
