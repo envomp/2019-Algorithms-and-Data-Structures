@@ -13,7 +13,7 @@ class MaxHeap {
     }
 
     void dequeue(int toBeRemoved) {
-        Collections.swap(treeAsArray, 0, treeAsArray.size() - 1);
+        Collections.swap(treeAsArray, toBeRemoved, treeAsArray.size() - 1);
         treeAsArray.remove(treeAsArray.size() - 1);
         for (int i = log2(treeAsArray.size()); i > 0; i--) {
             balance();
@@ -54,7 +54,10 @@ class MaxHeap {
 }
 
 class BinarySearchTree {
-    Node<Integer> insertRec(Node<Integer> root, int key, Node<Integer> parent) {
+
+    Node<Integer> root;
+
+    private Node insertRec(Node root, int key, Node parent) {
 
         if (root == null) {
             root = new Node<>(key);
@@ -66,18 +69,116 @@ class BinarySearchTree {
             root.left = insertRec(root.left, key, root);
         else if (key > root.getData())
             root.right = insertRec(root.right, key, root);
+        else {
+            return root;
+        }
+
+        return balance(root, key);
+
+    }
+
+    private Node balance(Node<Integer> root, int key) {
+        /* 2. Update height of this ancestor node */
+        root.height = 1 + Math.max(height(root.left), height(root.right));
+
+        /* 3. Get the balance factor of this ancestor
+              node to check whether this node became
+              unbalanced */
+        int balance = getBalance(root);
+
+        // If this node becomes unbalanced, then there
+        // are 4 cases Left Left Case
+        if (balance > 1 && key < root.left.data)
+            return rightRotate(root);
+
+        // Right Right Case
+        if (balance < -1 && key > root.right.data)
+            return leftRotate(root);
+
+        // Left Right Case
+        if (balance > 1 && key > root.left.data) {
+            root.left = leftRotate(root.left);
+            return rightRotate(root);
+        }
+
+        // Right Left Case
+        if (balance < -1 && key < root.right.data) {
+            root.right = rightRotate(root.right);
+            return leftRotate(root);
+        }
+
+        /* return the (unchanged) node pointer */
 
         return root;
     }
 
-    Node<Integer> deleteRec(Node<Integer> root, int key) {
+    Node insert(int element) {
+        System.out.println(String.format("Added %d", element));
+        root = insertRec(root, element, root);
+        BTreePrinter.printNode(root);
+
+        return root;
+    }
+
+    // A utility function to get the height of the tree
+    private int height(Node N) {
+        if (N == null)
+            return 0;
+
+        return N.height;
+    }
+
+    // A utility function to right rotate subtree rooted with y
+    // See the diagram given above.
+    private Node rightRotate(Node y) {
+        Node x = y.left;
+        Node T2 = x.right;
+
+        // Perform rotation
+        x.right = y;
+        y.left = T2;
+
+        // Update heights
+        y.height = Math.max(height(y.left), height(y.right)) + 1;
+        x.height = Math.max(height(x.left), height(x.right)) + 1;
+
+        // Return new root
+        return x;
+    }
+
+    // A utility function to left rotate subtree rooted with x
+    // See the diagram given above.
+    private Node leftRotate(Node x) {
+        Node y = x.right;
+        Node T2 = y.left;
+
+        // Perform rotation
+        y.left = x;
+        x.right = T2;
+
+        //  Update heights
+        x.height = Math.max(height(x.left), height(x.right)) + 1;
+        y.height = Math.max(height(y.left), height(y.right)) + 1;
+
+        // Return new root
+        return y;
+    }
+
+    // Get Balance factor of node N
+    private Integer getBalance(Node N) {
+        if (N == null)
+            return 0;
+        return height(N.left) - height(N.right);
+    }
+
+    Node deleteRec(Node root, int key) {
         if (root == null) {
             return null;
         }
 
-        if (key < root.data)
+        if (key < (Integer) root.data)
             root.left = deleteRec(root.left, key);
-        else if (key > root.data)
+        else if (key > (Integer) root.data)
             root.right = deleteRec(root.right, key);
 
         else {
@@ -88,13 +189,13 @@ class BinarySearchTree {
 
             root.data = minValue(root.right).data;
 
-            root.right = deleteRec(root.right, root.data);
+            root.right = deleteRec(root.right,(Integer) root.data);
         }
 
         return root;
     }
 
-    private Node<Integer> minValue(Node<Integer> root) {
+    private static Node minValue(Node root) {
         Node<Integer> minv = root;
         while (root.left != null) {
             minv = root.left;
@@ -126,6 +227,7 @@ class BinarySearchTree {
         }
         return sortedList;
     }
+
 }
 
 public class Lesson_2 {
@@ -160,29 +262,24 @@ public class Lesson_2 {
     private static void two() {
 
         BinarySearchTree binarySearchTree = new BinarySearchTree();
-        Node<Integer> root = null;
-
         for (int element : new int[]{41, 79, 38, 31, 45}) {
 
-            System.out.println(String.format("Added %d", element));
-            root = binarySearchTree.insertRec(root, element, root);
-            BTreePrinter.printNode(root);
+            binarySearchTree.insert(element);
         }
 
-        System.out.println(String.format("Removed %d", root.data));
-        root = binarySearchTree.deleteRec(root, root.data);
-        BTreePrinter.printNode(root);
+        System.out.println(String.format("Removed %d", binarySearchTree.root.data));
+        binarySearchTree.root = binarySearchTree.deleteRec(binarySearchTree.root, binarySearchTree.root.data);
+        BTreePrinter.printNode(binarySearchTree.root);
 
-        for (int element : new int[]{44, 24}) {
+        for (int element : new int[]{44, 24, 67, 23, 94, 5, 4}) {
 
-            System.out.println(String.format("Added %d", element));
-            root = binarySearchTree.insertRec(root, element, root);
-            BTreePrinter.printNode(root);
+            binarySearchTree.insert(element);
         }
 
-        System.out.println(binarySearchTree.getSortedList(root));
+        System.out.println(binarySearchTree.getSortedList(binarySearchTree.root));
 
     }
+
 
     private static void three() {
 
@@ -213,7 +310,7 @@ public class Lesson_2 {
     }
 
     public static void main(String[] args) {
-        one();
+        //one();
         two();
         //three();
     }
@@ -223,17 +320,19 @@ public class Lesson_2 {
 class Node<T extends Comparable<?>> {
     Node<T> left, right, parent;
     T data;
+    int height;
 
-    public Node(T data) {
+    Node(T data) {
         this.data = data;
     }
+
 
     @Override
     public String toString() {
         return data.toString();
     }
 
-    public Integer getData() {
+    Integer getData() {
         return (Integer) data;
     }
 }
