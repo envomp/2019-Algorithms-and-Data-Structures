@@ -135,7 +135,7 @@ public class Lesson_2 {
         MaxHeap maxHeap = new MaxHeap();
         maxHeap.treeAsArray = new ArrayList<>();
 
-        for (int element : new int[]{15, 9, 24, 48, 21}) {
+        for (int element : new int[]{32, 36, 50, 43, 10}) {
 
             System.out.println(String.format("Added %d", element));
             maxHeap.enqueue(element);
@@ -147,7 +147,7 @@ public class Lesson_2 {
         System.out.println(maxHeap.treeAsArray);
         BTreePrinter.printNode(maxHeap.treeAsArray.get(0));
 
-        for (int element : new int[]{25}) {
+        for (int element : new int[]{18}) {
 
             System.out.println(String.format("Added %d", element));
             maxHeap.enqueue(element);
