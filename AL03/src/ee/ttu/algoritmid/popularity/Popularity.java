@@ -1,16 +1,17 @@
 package ee.ttu.algoritmid.popularity;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Popularity {
-    private HashMap<int[], Integer> points = new HashMap<>();
+    private HashMap<String, Integer> points = new HashMap<>();
     private Integer maxPop = 0;
 
     public Popularity(int maxCoordinates) {
     }
 
     void addPoint(int x, int y) {
-        int[] array = new int[]{x, y};
+        String array = Arrays.toString(new int[]{x, y});
         if (points.containsKey(array)) {
             int now = points.get(array) + 1;
             if (now > maxPop) {
@@ -30,7 +31,7 @@ public class Popularity {
      * @return the number of occurrennces of the point
      */
     int pointPopularity(Integer x, Integer y) {
-        return points.get(new int[]{x, y});
+        return points.get(Arrays.toString(new int[]{x, y}));
     }
 
 
@@ -39,5 +40,13 @@ public class Popularity {
      */
     int maxPopularity() {
         return maxPop;
+    }
+
+    public static void main(String[] args) {
+        Popularity popularity = new Popularity(1);
+        popularity.addPoint(5, 5);
+        popularity.addPoint(5, 5);
+        System.out.println(popularity.maxPop);
+        System.out.println(popularity.pointPopularity(5, 5));
     }
 }
