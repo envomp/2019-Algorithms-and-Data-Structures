@@ -30,8 +30,12 @@ public class Popularity {
      * @param x, y - coordinates
      * @return the number of occurrennces of the point
      */
-    int pointPopularity(Integer x, Integer y) {
-        return points.get(Arrays.toString(new int[]{x, y}));
+    int pointPopularity(int x, int y) {
+        try {
+            return points.get(Arrays.toString(new int[]{x, y}));
+        } catch (NullPointerException) {
+            return 0;
+        }
     }
 
 
@@ -47,6 +51,6 @@ public class Popularity {
         popularity.addPoint(5, 5);
         popularity.addPoint(5, 5);
         System.out.println(popularity.maxPop);
-        System.out.println(popularity.pointPopularity(5, 5));
+        System.out.println(popularity.pointPopularity(2, 5));
     }
 }
