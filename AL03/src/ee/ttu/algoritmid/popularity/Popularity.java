@@ -33,7 +33,7 @@ public class Popularity {
     int pointPopularity(int x, int y) {
         try {
             return points.get(Arrays.toString(new int[]{x, y}));
-        } catch (NullPointerException) {
+        } catch (NullPointerException e) {
             return 0;
         }
     }
