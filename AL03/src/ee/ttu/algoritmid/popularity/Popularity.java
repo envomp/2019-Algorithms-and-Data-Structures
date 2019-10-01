@@ -5,24 +5,24 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class Popularity {
-    private HashMap<ArrayList<Integer>, Integer> points = new HashMap<>();
+    private HashMap<Integer, Integer> points = new HashMap<>();
     private Integer maxPop = 0;
 
     public Popularity(int maxCoordinates) {
     }
 
     void addPoint(Integer x, Integer y) {
-        ArrayList<Integer> array = new ArrayList<>(Arrays.asList(x, y));
-        if (points.containsKey(array)) {
-            int now = points.get(array) + 1;
+        int hash = Arrays.hashCode(new int[] {x, y});
+        if (points.containsKey(hash)) {
+            int now = points.get(hash) + 1;
             if (now > maxPop) {
                 maxPop = now;
             }
-            points.put(array, now);
+            points.put(hash, now);
         } else {
-            points.put(array, 1);
+            points.put(hash, 1);
             if (maxPop == 0) {
-                maxPop = 0;
+                maxPop = 1;
             }
         }
     }
@@ -33,7 +33,7 @@ public class Popularity {
      */
     int pointPopularity(int x, int y) {
         try {
-            return points.get(new ArrayList<>(Arrays.asList(x, y)));
+            return points.get(Arrays.hashCode(new int[] {x, y}));
         } catch (NullPointerException e) {
             return 0;
         }
