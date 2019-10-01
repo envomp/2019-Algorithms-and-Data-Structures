@@ -1,18 +1,18 @@
 package ee.ttu.algoritmid.popularity;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class Popularity {
-    private HashMap<Integer, Integer> points = new HashMap<>();
+    private HashMap<List<Integer>, Integer> points = new HashMap<>();
     private Integer maxPop = 0;
 
     public Popularity(int maxCoordinates) {
     }
 
     void addPoint(Integer x, Integer y) {
-        int hash = Arrays.hashCode(new int[] {x, y});
+        List<Integer> hash = Arrays.asList(x, y);
         if (points.containsKey(hash)) {
             int now = points.get(hash) + 1;
             if (now > maxPop) {
@@ -33,7 +33,7 @@ public class Popularity {
      */
     int pointPopularity(int x, int y) {
         try {
-            return points.get(Arrays.hashCode(new int[] {x, y}));
+            return points.get(Arrays.asList(x, y));
         } catch (NullPointerException e) {
             return 0;
         }
