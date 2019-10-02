@@ -16,10 +16,10 @@ class BinarySearchTree {
     Node remove(Node node, int element) {
 //        System.out.println(String.format("Removed %d", element));
         root = deleteRec(node, element);
-        if (root != null) {
+//        if (root != null) {
 //            root.printTree();
-            root = balance(root, element);
-        }
+//            root = balance(root, element);
+//        }
 
         return root;
     }
@@ -86,8 +86,7 @@ class BinarySearchTree {
             return root;
         }
 
-        return root;
-
+        return balance(root, key);
     }
 
     private Node balance(Node root, int key) {
@@ -192,7 +191,7 @@ class BinarySearchTree {
             root.right = deleteRec(root.right, root.key);
         }
 
-        return root;
+        return balance(root, key);
     }
 
     private static Node minValue(Node root) {
