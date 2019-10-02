@@ -25,15 +25,14 @@ public class HW01 implements Dancers {
     }
 
     private DancingCouple getDancingCouple(Dancer candidate, BinarySearchTree self, BinarySearchTree opposite) {
-        Dancer match;
-        try {
-            match = opposite.getMatch(candidate);
-        }catch (Exception e) {
-
-            return null;
-        }
+        Dancer match = opposite.getMatch(candidate);
         if (match == null) {
-            self.insert(candidate);
+            try {
+                self.insert(candidate);
+            }catch (Exception e) {
+                return null;
+            }
+            
             return null;
         }
         if (match.getGender().equals(MALE)) {
