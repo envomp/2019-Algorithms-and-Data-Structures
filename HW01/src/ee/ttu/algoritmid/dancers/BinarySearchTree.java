@@ -86,7 +86,11 @@ class BinarySearchTree {
             return root;
         }
 
-        return balance(root, key);
+        try {
+            return balance(root, key);
+        } catch (Exception e) {
+            return root;
+        }
     }
 
     private Node balance(Node root, int key) {
@@ -190,8 +194,13 @@ class BinarySearchTree {
 
             root.right = deleteRec(root.right, root.key);
         }
+        try {
+            return balance(root, key);
+        } catch (Exception e) {
+            return root;
+        }
 
-        return balance(root, key);
+
     }
 
     private static Node minValue(Node root) {
