@@ -2,6 +2,7 @@ package ee.ttu.algoritmid.dancers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static ee.ttu.algoritmid.dancers.Dancer.Gender.FEMALE;
 import static ee.ttu.algoritmid.dancers.Dancer.Gender.MALE;
@@ -30,16 +31,11 @@ public class HW01 implements Dancers {
             self.insert(candidate);
             return null;
         }
-        try {
-            if (match.getGender().equals(MALE)) {
-                return new DancingCoupleImpl(match, candidate);
-            } else {
-                return new DancingCoupleImpl(candidate, match);
-            }
-        } catch (Exception e) {
-            return null;
+        if (match.getGender().equals(MALE)) {
+            return new DancingCoupleImpl(match, candidate);
+        } else {
+            return new DancingCoupleImpl(candidate, match);
         }
-
     }
 
     @Override
@@ -68,20 +64,14 @@ public class HW01 implements Dancers {
     public static void testCustom() throws Exception {
         List<Dancer> requests = new ArrayList<>();
         List<Integer> responds = new ArrayList<>();
-
-
-        requests.add(new DancerImpl("F", FEMALE, 145));
-        responds.add(null);
-        requests.add(new DancerImpl("F", FEMALE, 145));
-        responds.add(null);
-        requests.add(new DancerImpl("F", FEMALE, 145));
-        responds.add(null);
-        requests.add(new DancerImpl("F", FEMALE, 145));
-        responds.add(null);
-
-        requests.add(new DancerImpl("M", MALE, 150));
-        responds.add(145);
-
+        Random RANDOM = new Random();
+        HW01 solution = new HW01();
+        for (int i = 0; i < 10000; i++) {
+            Dancer dancer = new DancerImpl("Dab", RANDOM.nextBoolean() ? MALE : FEMALE, 1 + RANDOM.nextInt(100000));
+            requests.add(dancer);
+            DancingCouple couple = solution.findPartnerFor(dancer);
+            responds.add(couple == null ? null : couple.getFemaleDancer() == dancer ? couple.getMaleDancer().getHeight() : couple.getFemaleDancer().getHeight());
+        }
 
         testTreeEndToEnd(requests, responds);
     }

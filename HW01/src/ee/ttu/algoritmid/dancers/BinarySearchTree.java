@@ -18,6 +18,7 @@ class BinarySearchTree {
         System.out.println(String.format("Removed %d", element));
         root = deleteRec(node, element);
         if (root != null) {
+            root.printTree();
             root = balance(root, element);
         }
 
@@ -86,7 +87,7 @@ class BinarySearchTree {
             return root;
         }
 
-        return balance(root, key);
+        return root;
 
     }
 
