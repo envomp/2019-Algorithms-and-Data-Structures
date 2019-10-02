@@ -209,6 +209,7 @@ class BinarySearchTree {
         if (root != null) {
             root.printTree();
         }
+
         while (root != null) {
 
             if (root.left != null && !sortedList.contains(root.left)) {
@@ -228,6 +229,11 @@ class BinarySearchTree {
             }
             root = root.parent;
         }
+
+        if (root != null) {
+            root.printTree();
+        }
+
         return sortedList;
     }
 }

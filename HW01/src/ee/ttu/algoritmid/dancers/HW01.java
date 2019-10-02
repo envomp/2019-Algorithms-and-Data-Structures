@@ -39,8 +39,8 @@ public class HW01 implements Dancers {
     @Override
     public List<Dancer> returnWaitingList() {
         ArrayList<Dancer> mergedSortedList = new ArrayList<>();
-        ArrayList<Node> females = maleBinarySearchTree.getSortedList();
-        ArrayList<Node> males = femaleBinarySearchTree.getSortedList();
+        ArrayList<Node> females = new ArrayList<>(maleBinarySearchTree.getSortedList());
+        ArrayList<Node> males = new ArrayList<>(femaleBinarySearchTree.getSortedList());
         while (true) {
             if (males.isEmpty()) {
                 if (females.isEmpty()) {
@@ -63,19 +63,29 @@ public class HW01 implements Dancers {
         List<Dancer> requests = new ArrayList<>();
         List<Integer> responds = new ArrayList<>();
 
-        requests.add(new DancerImpl("M", MALE, 145));
-        responds.add(null);
-        requests.add(new DancerImpl("M", MALE, 146));
-        responds.add(null);
-        requests.add(new DancerImpl("M", MALE, 130));
+        requests.add(new DancerImpl("M", MALE, 150));
         responds.add(null);
 
         requests.add(new DancerImpl("F", FEMALE, 145));
+        responds.add(150);
+        requests.add(new DancerImpl("F", FEMALE, 145));
         responds.add(null);
         requests.add(new DancerImpl("F", FEMALE, 145));
         responds.add(null);
-        requests.add(new DancerImpl("F", FEMALE, 146));
+        requests.add(new DancerImpl("F", FEMALE, 145));
         responds.add(null);
+        requests.add(new DancerImpl("F", FEMALE, 145));
+        responds.add(null);
+
+        requests.add(new DancerImpl("M", MALE, 150));
+        responds.add(145);
+        requests.add(new DancerImpl("M", MALE, 150));
+        responds.add(145);
+        requests.add(new DancerImpl("M", MALE, 150));
+        responds.add(145);
+        requests.add(new DancerImpl("M", MALE, 150));
+        responds.add(145);
+
 
         testTreeEndToEnd(requests, responds);
     }
@@ -299,8 +309,8 @@ public class HW01 implements Dancers {
 
         for (int i = 0; i < requests.size(); i++) {
             testRequestResponse(solution, requests.get(i), responds.get(i));
+            System.out.println(solution.returnWaitingList());
         }
-        System.out.println(solution.returnWaitingList());
     }
 
     private static void testRequestResponse(HW01 solution, Dancer dancer, Integer expectedPartnerHeight) throws Exception {
@@ -331,8 +341,8 @@ public class HW01 implements Dancers {
 
     public static void main(String[] args) {
         try {
-            testMaleTreeEndToEndPublic();
-            testFemaleTreeEndToEndPublic();
+//            testMaleTreeEndToEndPublic();
+//            testFemaleTreeEndToEndPublic();
             testCustom();
         } catch (Exception e) {
             e.printStackTrace();
