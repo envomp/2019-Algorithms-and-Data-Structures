@@ -213,7 +213,6 @@ class BinarySearchTree {
         return sortedList;
     }
 
-    // For traversing in order
     private void inOrder(Node node, ArrayList<Node> order) {
         if (node != null) {
             inOrder(node.left, order);

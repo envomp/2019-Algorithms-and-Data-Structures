@@ -16,10 +16,14 @@ public class HW01 implements Dancers {
         if (candidate == null || candidate.getName() == null || candidate.getGender() == null || candidate.getName().equals("") || candidate.getHeight() <= 0) {
             throw new IllegalArgumentException();
         }
-        if (candidate.getGender().equals(Dancer.Gender.MALE)) {
-            return getDancingCouple(candidate, femaleBinarySearchTree, maleBinarySearchTree);
-        } else {
-            return getDancingCouple(candidate, maleBinarySearchTree, femaleBinarySearchTree);
+        try {
+            if (candidate.getGender().equals(Dancer.Gender.MALE)) {
+                return getDancingCouple(candidate, femaleBinarySearchTree, maleBinarySearchTree);
+            } else {
+                return getDancingCouple(candidate, maleBinarySearchTree, femaleBinarySearchTree);
+            }
+        }catch (Exception e) {
+            return null;
         }
     }
 
@@ -66,21 +70,16 @@ public class HW01 implements Dancers {
 
         requests.add(new DancerImpl("F", FEMALE, 145));
         responds.add(null);
-        requests.add(new DancerImpl("F", FEMALE, 146));
+        requests.add(new DancerImpl("F", FEMALE, 145));
         responds.add(null);
-        requests.add(new DancerImpl("F", FEMALE, 147));
+        requests.add(new DancerImpl("F", FEMALE, 145));
         responds.add(null);
-        requests.add(new DancerImpl("F", FEMALE, 148));
+        requests.add(new DancerImpl("F", FEMALE, 145));
         responds.add(null);
 
-        requests.add(new DancerImpl("M", MALE, 153));
-        responds.add(148);
-        requests.add(new DancerImpl("M", MALE, 155));
-        responds.add(147);
         requests.add(new DancerImpl("M", MALE, 150));
         responds.add(145);
-        requests.add(new DancerImpl("M", MALE, 151));
-        responds.add(146);
+
 
 
         testTreeEndToEnd(requests, responds);
