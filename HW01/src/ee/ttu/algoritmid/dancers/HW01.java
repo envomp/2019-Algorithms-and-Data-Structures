@@ -16,19 +16,22 @@ public class HW01 implements Dancers {
         if (candidate == null || candidate.getName() == null || candidate.getGender() == null || candidate.getName().equals("") || candidate.getHeight() <= 0) {
             throw new IllegalArgumentException();
         }
-        try {
-            if (candidate.getGender().equals(Dancer.Gender.MALE)) {
-                return getDancingCouple(candidate, femaleBinarySearchTree, maleBinarySearchTree);
-            } else {
-                return getDancingCouple(candidate, maleBinarySearchTree, femaleBinarySearchTree);
-            }
-        }catch (Exception e) {
-            return null;
+        if (candidate.getGender().equals(Dancer.Gender.MALE)) {
+            return getDancingCouple(candidate, femaleBinarySearchTree, maleBinarySearchTree);
+        } else {
+            return getDancingCouple(candidate, maleBinarySearchTree, femaleBinarySearchTree);
         }
+
     }
 
     private DancingCouple getDancingCouple(Dancer candidate, BinarySearchTree self, BinarySearchTree opposite) {
-        Dancer match = opposite.getMatch(candidate);
+        Dancer match;
+        try {
+            match = opposite.getMatch(candidate);
+        }catch (Exception e) {
+
+            return null;
+        }
         if (match == null) {
             self.insert(candidate);
             return null;
@@ -79,7 +82,6 @@ public class HW01 implements Dancers {
 
         requests.add(new DancerImpl("M", MALE, 150));
         responds.add(145);
-
 
 
         testTreeEndToEnd(requests, responds);
