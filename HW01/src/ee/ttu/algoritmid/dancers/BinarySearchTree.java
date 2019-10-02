@@ -7,17 +7,17 @@ class BinarySearchTree {
     private Node root;
 
     Node insert(Dancer element) {
-        System.out.println(String.format("Added %d", element.getHeight()));
+//        System.out.println(String.format("Added %d", element.getHeight()));
         root = insertRec(root, element, root);
 //        root = balance(root, element.getHeight()); //Doesn't do anything.. probably..
         return root;
     }
 
     Node remove(Node node, int element) {
-        System.out.println(String.format("Removed %d", element));
+//        System.out.println(String.format("Removed %d", element));
         root = deleteRec(node, element);
         if (root != null) {
-            root.printTree();
+//            root.printTree();
             root = balance(root, element);
         }
 
