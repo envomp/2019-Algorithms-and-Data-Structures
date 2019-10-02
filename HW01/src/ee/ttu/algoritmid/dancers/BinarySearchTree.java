@@ -9,8 +9,7 @@ class BinarySearchTree {
     Node insert(Dancer element) {
         System.out.println(String.format("Added %d", element.getHeight()));
         root = insertRec(root, element, root);
-        root = balance(root, element.getHeight()); //Doesn't do anything.. probably..
-
+//        root = balance(root, element.getHeight()); //Doesn't do anything.. probably..
         return root;
     }
 
