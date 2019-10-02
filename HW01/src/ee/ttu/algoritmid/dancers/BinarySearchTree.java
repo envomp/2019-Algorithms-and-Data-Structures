@@ -206,9 +206,7 @@ class BinarySearchTree {
 
     ArrayList<Node> getSortedList() {
         ArrayList<Node> sortedList = new ArrayList<>();
-        if (root != null) {
-            root.printTree();
-        }
+        Node root = this.root;
 
         while (root != null) {
 
@@ -230,9 +228,6 @@ class BinarySearchTree {
             root = root.parent;
         }
 
-        if (root != null) {
-            root.printTree();
-        }
 
         return sortedList;
     }

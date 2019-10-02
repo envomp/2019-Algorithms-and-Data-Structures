@@ -341,8 +341,8 @@ public class HW01 implements Dancers {
 
     public static void main(String[] args) {
         try {
-//            testMaleTreeEndToEndPublic();
-//            testFemaleTreeEndToEndPublic();
+            testMaleTreeEndToEndPublic();
+            testFemaleTreeEndToEndPublic();
             testCustom();
         } catch (Exception e) {
             e.printStackTrace();
