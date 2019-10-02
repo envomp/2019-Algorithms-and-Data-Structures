@@ -1,9 +1,7 @@
 package ee.ttu.algoritmid.dancers;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static ee.ttu.algoritmid.dancers.Dancer.Gender.FEMALE;
 import static ee.ttu.algoritmid.dancers.Dancer.Gender.MALE;
@@ -12,11 +10,10 @@ public class HW01 implements Dancers {
 
     private BinarySearchTree maleBinarySearchTree = new BinarySearchTree();
     private BinarySearchTree femaleBinarySearchTree = new BinarySearchTree();
-    private List<Dancer> waitingList = new ArrayList<>();
 
     @Override
     public DancingCouple findPartnerFor(Dancer candidate) throws IllegalArgumentException {
-        if (candidate.getName().equals("") || candidate.getHeight() <= 0) {
+        if (candidate != null && candidate.getName().equals("") || candidate.getHeight() <= 0) {
             throw new IllegalArgumentException(candidate.toString());
         }
         if (candidate.getGender().equals(Dancer.Gender.MALE)) {
@@ -28,10 +25,8 @@ public class HW01 implements Dancers {
 
     private DancingCouple getDancingCouple(Dancer candidate, BinarySearchTree self, BinarySearchTree opposite) {
         Dancer match = opposite.getMatch(candidate);
-        waitingList.remove(match);
         if (match == null) {
             self.insert(candidate);
-            waitingList.add(candidate);
             return null;
         }
         if (match.getGender().equals(MALE)) {
@@ -43,18 +38,44 @@ public class HW01 implements Dancers {
 
     @Override
     public List<Dancer> returnWaitingList() {
-        return waitingList.stream().sorted(Comparator.comparing(Dancer::getGender)).sorted(Comparator.comparingInt(Dancer::getHeight)).collect(Collectors.toList());
+        ArrayList<Dancer> mergedSortedList = new ArrayList<>();
+        ArrayList<Node> females = maleBinarySearchTree.getSortedList();
+        ArrayList<Node> males = femaleBinarySearchTree.getSortedList();
+        while (true) {
+            if (males.isEmpty()) {
+                if (females.isEmpty()) {
+                    return mergedSortedList;
+                }
+                mergedSortedList.addAll(females.remove(0).data);
+            } else {
+                if (females.isEmpty()) {
+                    mergedSortedList.addAll(males.remove(0).data);
+                } else if (females.get(0).key <= males.get(0).key) {
+                    mergedSortedList.addAll(females.remove(0).data);
+                } else {
+                    mergedSortedList.addAll(males.remove(0).data);
+                }
+            }
+        }
     }
 
     public static void testCustom() throws Exception {
         List<Dancer> requests = new ArrayList<>();
         List<Integer> responds = new ArrayList<>();
 
-        requests.add(new DancerImpl("M", MALE, 150));
+        requests.add(new DancerImpl("M", MALE, 145));
+        responds.add(null);
+        requests.add(new DancerImpl("M", MALE, 146));
+        responds.add(null);
+        requests.add(new DancerImpl("M", MALE, 130));
         responds.add(null);
 
         requests.add(new DancerImpl("F", FEMALE, 145));
-        responds.add(150);
+        responds.add(null);
+        requests.add(new DancerImpl("F", FEMALE, 145));
+        responds.add(null);
+        requests.add(new DancerImpl("F", FEMALE, 146));
+        responds.add(null);
 
         testTreeEndToEnd(requests, responds);
     }
@@ -279,7 +300,7 @@ public class HW01 implements Dancers {
         for (int i = 0; i < requests.size(); i++) {
             testRequestResponse(solution, requests.get(i), responds.get(i));
         }
-        System.out.println(solution.waitingList);
+        System.out.println(solution.returnWaitingList());
     }
 
     private static void testRequestResponse(HW01 solution, Dancer dancer, Integer expectedPartnerHeight) throws Exception {
@@ -310,8 +331,8 @@ public class HW01 implements Dancers {
 
     public static void main(String[] args) {
         try {
-//            testMaleTreeEndToEndPublic();
-//            testFemaleTreeEndToEndPublic();
+            testMaleTreeEndToEndPublic();
+            testFemaleTreeEndToEndPublic();
             testCustom();
         } catch (Exception e) {
             e.printStackTrace();

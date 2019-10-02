@@ -28,7 +28,6 @@ class BinarySearchTree {
         if (root == null) {
             return null;
         } else {
-            root.printTree();
             if (dancer.getGender().equals(Dancer.Gender.MALE)) {
                 return getMatchForMale(root, dancer.getHeight(), null);
             } else {
@@ -62,7 +61,6 @@ class BinarySearchTree {
         if (root == null) {
             return null;
         }
-        System.out.println(root.data);
         Dancer dancer = root.data.removeFirst();
         if (root.data.isEmpty()) {
             remove(this.root, root.key);
@@ -84,6 +82,7 @@ class BinarySearchTree {
         else if (key > root.key)
             root.right = insertRec(root.right, dancer, root);
         else {
+            root.data.add(dancer);
             return root;
         }
 
@@ -205,24 +204,27 @@ class BinarySearchTree {
         return minv;
     }
 
-    ArrayList<Integer> getSortedList(Node root) {
-        ArrayList<Integer> sortedList = new ArrayList<>();
+    ArrayList<Node> getSortedList() {
+        ArrayList<Node> sortedList = new ArrayList<>();
+        if (root != null) {
+            root.printTree();
+        }
         while (root != null) {
 
-            if (root.left != null && !sortedList.contains(root.left.key)) {
+            if (root.left != null && !sortedList.contains(root.left)) {
                 root = root.left;
                 continue;
             }
-            if (root.right != null && !sortedList.contains(root.right.key)) {
+            if (root.right != null && !sortedList.contains(root.right)) {
 
-                if (!sortedList.contains(root.key)) {
-                    sortedList.add(root.key);
+                if (!sortedList.contains(root)) {
+                    sortedList.add(root);
                 }
                 root = root.right;
                 continue;
             }
-            if (!sortedList.contains(root.key)) {
-                sortedList.add(root.key);
+            if (!sortedList.contains(root)) {
+                sortedList.add(root);
             }
             root = root.parent;
         }
