@@ -13,8 +13,8 @@ public class HW01 implements Dancers {
 
     @Override
     public DancingCouple findPartnerFor(Dancer candidate) throws IllegalArgumentException {
-        if (candidate != null && candidate.getName().equals("") || candidate.getHeight() <= 0) {
-            throw new IllegalArgumentException(candidate.toString());
+        if (candidate == null || candidate.getName().equals("") || candidate.getHeight() <= 0) {
+            throw new IllegalArgumentException();
         }
         if (candidate.getGender().equals(Dancer.Gender.MALE)) {
             return getDancingCouple(candidate, femaleBinarySearchTree, maleBinarySearchTree);
@@ -63,28 +63,24 @@ public class HW01 implements Dancers {
         List<Dancer> requests = new ArrayList<>();
         List<Integer> responds = new ArrayList<>();
 
-        requests.add(new DancerImpl("M", MALE, 150));
-        responds.add(null);
 
         requests.add(new DancerImpl("F", FEMALE, 145));
-        responds.add(150);
-        requests.add(new DancerImpl("F", FEMALE, 145));
         responds.add(null);
-        requests.add(new DancerImpl("F", FEMALE, 145));
+        requests.add(new DancerImpl("F", FEMALE, 146));
         responds.add(null);
-        requests.add(new DancerImpl("F", FEMALE, 145));
+        requests.add(new DancerImpl("F", FEMALE, 147));
         responds.add(null);
-        requests.add(new DancerImpl("F", FEMALE, 145));
+        requests.add(new DancerImpl("F", FEMALE, 148));
         responds.add(null);
 
+        requests.add(new DancerImpl("M", MALE, 153));
+        responds.add(148);
+        requests.add(new DancerImpl("M", MALE, 155));
+        responds.add(147);
         requests.add(new DancerImpl("M", MALE, 150));
         responds.add(145);
-        requests.add(new DancerImpl("M", MALE, 150));
-        responds.add(145);
-        requests.add(new DancerImpl("M", MALE, 150));
-        responds.add(145);
-        requests.add(new DancerImpl("M", MALE, 150));
-        responds.add(145);
+        requests.add(new DancerImpl("M", MALE, 151));
+        responds.add(146);
 
 
         testTreeEndToEnd(requests, responds);
@@ -341,8 +337,8 @@ public class HW01 implements Dancers {
 
     public static void main(String[] args) {
         try {
-            testMaleTreeEndToEndPublic();
-            testFemaleTreeEndToEndPublic();
+//            testMaleTreeEndToEndPublic();
+//            testFemaleTreeEndToEndPublic();
             testCustom();
         } catch (Exception e) {
             e.printStackTrace();

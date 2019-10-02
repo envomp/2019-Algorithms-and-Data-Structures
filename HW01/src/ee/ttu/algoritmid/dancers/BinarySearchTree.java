@@ -206,29 +206,20 @@ class BinarySearchTree {
 
     ArrayList<Node> getSortedList() {
         ArrayList<Node> sortedList = new ArrayList<>();
-        Node root = this.root;
-
-        while (root != null) {
-
-            if (root.left != null && !sortedList.contains(root.left)) {
-                root = root.left;
-                continue;
-            }
-            if (root.right != null && !sortedList.contains(root.right)) {
-
-                if (!sortedList.contains(root)) {
-                    sortedList.add(root);
-                }
-                root = root.right;
-                continue;
-            }
-            if (!sortedList.contains(root)) {
-                sortedList.add(root);
-            }
-            root = root.parent;
-        }
-
-
+        inOrder(this.root, sortedList);
+//        if (this.root != null) {
+//            this.root.printTree();
+//        }
         return sortedList;
     }
+
+    // For traversing in order
+    private void inOrder(Node node, ArrayList<Node> order) {
+        if (node != null) {
+            inOrder(node.left, order);
+            order.add(node);
+            inOrder(node.right, order);
+        }
+    }
+
 }
