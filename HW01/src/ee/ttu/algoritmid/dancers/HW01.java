@@ -1,6 +1,5 @@
 package ee.ttu.algoritmid.dancers;
 
-import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -47,6 +46,18 @@ public class HW01 implements Dancers {
         return waitingList.stream().sorted(Comparator.comparing(Dancer::getGender)).sorted(Comparator.comparingInt(Dancer::getHeight)).collect(Collectors.toList());
     }
 
+    public static void testCustom() throws Exception {
+        List<Dancer> requests = new ArrayList<>();
+        List<Integer> responds = new ArrayList<>();
+
+        requests.add(new DancerImpl("M", MALE, 150));
+        responds.add(null);
+
+        requests.add(new DancerImpl("F", FEMALE, 145));
+        responds.add(150);
+
+        testTreeEndToEnd(requests, responds);
+    }
 
     public static void testMaleTreeEndToEndPublic() throws Exception {
         List<Dancer> requests = new ArrayList<>();
@@ -271,7 +282,6 @@ public class HW01 implements Dancers {
         System.out.println(solution.waitingList);
     }
 
-
     private static void testRequestResponse(HW01 solution, Dancer dancer, Integer expectedPartnerHeight) throws Exception {
 
         DancingCouple couple = solution.findPartnerFor(dancer);
@@ -300,8 +310,9 @@ public class HW01 implements Dancers {
 
     public static void main(String[] args) {
         try {
-            testMaleTreeEndToEndPublic();
-            testFemaleTreeEndToEndPublic();
+//            testMaleTreeEndToEndPublic();
+//            testFemaleTreeEndToEndPublic();
+            testCustom();
         } catch (Exception e) {
             e.printStackTrace();
         }
