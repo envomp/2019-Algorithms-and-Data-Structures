@@ -13,7 +13,7 @@ public class HW01 implements Dancers {
 
     @Override
     public DancingCouple findPartnerFor(Dancer candidate) throws IllegalArgumentException {
-        if (candidate == null || candidate.getName().equals("") || candidate.getName() == null || candidate.getGender() == null || candidate.getHeight() < 0) {
+        if (candidate == null || candidate.getName() == null || candidate.getGender() == null || candidate.getName().equals("") || candidate.getHeight() <= 0) {
             throw new IllegalArgumentException();
         }
         if (candidate.getGender().equals(Dancer.Gender.MALE)) {
@@ -333,7 +333,6 @@ public class HW01 implements Dancers {
     private static void fail(String s) throws Exception {
         throw new Exception(s);
     }
-
 
     public static void main(String[] args) {
         try {
