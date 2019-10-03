@@ -3,7 +3,9 @@ package ee.ttu.algoritmid.dancers;
 import java.util.LinkedList;
 
 class Node {
-    Node left, right, parent;
+    Node left, right
+//            , parent
+            ;
     Integer key;
     LinkedList<Dancer> data = new LinkedList<>();
     int height;
