@@ -38,13 +38,14 @@ public class ScoreBoard {
 	}
 
 	public static void main(String[] args) {
+		long start = System.currentTimeMillis();
 		ScoreBoard scoreBoard = new ScoreBoard();
 		Random random = new Random();
-		for (int i = 0; i < 10000; i++) {
-			scoreBoard.add(new Participant(i, "", random.nextInt(1000)));
+		for (int i = 0; i < 100000; i++) {
+			scoreBoard.add(new Participant(i, "", random.nextInt(2000000000)));
 		}
-		System.out.println(scoreBoard.get(100));
+		System.out.println(scoreBoard.get(1000));
+		System.out.println((double) (System.currentTimeMillis() - start) / 1000);
 	}
 }
-
 
