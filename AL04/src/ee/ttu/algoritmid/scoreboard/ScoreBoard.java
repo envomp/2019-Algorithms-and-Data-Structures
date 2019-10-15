@@ -9,7 +9,7 @@ public class ScoreBoard {
 			return o1.getTime() > o2.getTime() ? -1 : 1;
 		}
 		if ((o1.getId() != o2.getId())) {
-			return o1.getId() > o2.getId() ? -1 : 1;
+			return o1.getId() > o2.getId() ? 1 : -1;
 		}
 		return 0;
 	});
