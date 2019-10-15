@@ -35,8 +35,8 @@ public class Participant {
 		this.time = time;
 	}
 
-	@Override
-	public String toString() {
-		return String.format("%d %d", id, time);
-	}
+//	@Override
+//	public String toString() {
+//		return String.format("%d %d", time, id);
+//	}
 }
