@@ -87,7 +87,7 @@ public class AL06 {
                 }
             }
             if (!current.equals(goal)) {
-                System.out.println("can't reach destination");
+                return null;
             }
             for (Integer node = goal; node != null; node = prev.get(node)) {
                 directions.add(node);
