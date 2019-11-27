@@ -6,7 +6,7 @@ public class InterestingStamps {
 
 	public static List<Integer> findStamps(int sum, List<Integer> stampOptions) throws IllegalArgumentException {
 
-		if (stampOptions.size() > 1000) {
+		if (stampOptions.size() > 100) {
 			throw new IllegalArgumentException();
 		}
 
