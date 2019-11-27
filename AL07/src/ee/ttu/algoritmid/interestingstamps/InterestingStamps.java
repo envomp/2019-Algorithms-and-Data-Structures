@@ -49,11 +49,11 @@ public class InterestingStamps {
 
 		if (sum > 100000 && stampOptions.size() > 4) { // less than 5, max 50
 
-			ProperClass properClass = new ProperClass(sum / 10, arr);
+			ProperClass properClass = new ProperClass(sum / 100, arr);
 			properClass.CombinationRepetition(n, r);
 			List<Integer> a = new ArrayList<>();
 
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < 100; i++) {
 				for (int el : properClass.answer) {
 					a.add(el);
 				}
