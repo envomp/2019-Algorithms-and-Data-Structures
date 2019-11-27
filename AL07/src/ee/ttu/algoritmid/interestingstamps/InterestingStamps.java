@@ -33,6 +33,10 @@ public class InterestingStamps {
 		int r = 1000;
 		properClass.CombinationRepetition(n, r);
 
+		if (properClass.answer == null) {
+			throw new IllegalArgumentException();
+		}
+
 		List<Integer> a = new ArrayList<>();
 		for (int el : properClass.answer) {
 			a.add(el);
@@ -124,8 +128,8 @@ class ProperClass {
 	}
 
 	public static void main(String[] args) {
-		List<Integer> stamps = new ArrayList<>(Arrays.asList(1, 10, 24, 30, 33, 36));
-		System.out.println(InterestingStamps.findStamps(100, stamps));
+		List<Integer> stamps = new ArrayList<>(Arrays.asList(10, 24, 30, 33, 36));
+		System.out.println(InterestingStamps.findStamps(2, stamps));
 	}
 
 }
