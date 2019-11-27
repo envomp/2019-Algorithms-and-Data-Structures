@@ -37,7 +37,7 @@ public class InterestingStamps {
 		ProperClass properClass = new ProperClass(sum, arr);
 
 		int n = arr.length;
-		int r = 10000;
+		int r = 5000;
 		properClass.CombinationRepetition(n, r);
 
 		if (properClass.answer == null) {
