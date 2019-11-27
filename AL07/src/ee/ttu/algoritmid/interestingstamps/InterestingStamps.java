@@ -17,8 +17,11 @@ public class InterestingStamps {
 //			}
 //		}
 
-		if (sum > 100000 && stampOptions.size() > 3) {
-			throw new IllegalArgumentException();
+		if (sum > 100000 && stampOptions.size() > 4) { // less than 5
+			Collections.sort(stampOptions);
+			if (stampOptions.get(stampOptions.size() - 1) > 100) {
+				throw new IllegalArgumentException();
+			}
 		}
 
 		if (sum == 0) {
