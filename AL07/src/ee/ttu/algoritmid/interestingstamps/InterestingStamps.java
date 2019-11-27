@@ -50,24 +50,27 @@ public class InterestingStamps {
 
 			int max = Collections.max(stampOptions);
 
-			int rem = 950000 % max;
+			stampOptions.remove(max);
+			stampOptions.add(max);
 
-			int times = (950000 - rem) / max;
-
-
-			ProperClass properClass = new ProperClass(1000 + rem, arr);
-			properClass.CombinationRepetition(n, r);
-			List<Integer> a = new ArrayList<>();
-
-			for (int el : properClass.answer) {
-				a.add(el);
-			}
-
-			for(int i = 0; i < times; i++) {
-				a.add(max);
-			}
-
-			return a;
+//			int rem = 950000 % max;
+//
+//			int times = (950000 - rem) / max;
+//
+//
+//			ProperClass properClass = new ProperClass(1000 + rem, arr);
+//			properClass.CombinationRepetition(n, r);
+//			List<Integer> a = new ArrayList<>();
+//
+//			for (int el : properClass.answer) {
+//				a.add(el);
+//			}
+//
+//			for(int i = 0; i < times; i++) {
+//				a.add(max);
+//			}
+//
+//			return a;
 		}
 
 		ProperClass properClass = new ProperClass(sum, arr);
