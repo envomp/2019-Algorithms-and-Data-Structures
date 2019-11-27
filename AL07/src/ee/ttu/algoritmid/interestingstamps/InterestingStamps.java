@@ -13,7 +13,7 @@ public class InterestingStamps {
 		stampOptions = new ArrayList<>(new HashSet<>(stampOptions));
 		stampOptions.sort(Collections.reverseOrder());
 
-		if (stampOptions.get(stampOptions.size() - 1) > sum) {
+		if (stampOptions.size() == 0 || stampOptions.get(stampOptions.size() - 1) > sum) {
 			throw new IllegalArgumentException();
 		}
 
@@ -135,8 +135,8 @@ class ProperClass {
 	}
 
 	public static void main(String[] args) {
-		List<Integer> stamps = new ArrayList<>(Arrays.asList(10, 24, 30, 33, 36));
-		System.out.println(InterestingStamps.findStamps(0, stamps));
+		List<Integer> stamps = new ArrayList<>(Arrays.asList());
+		System.out.println(InterestingStamps.findStamps(1, stamps));
 	}
 
 }
