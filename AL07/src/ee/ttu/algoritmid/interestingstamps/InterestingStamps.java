@@ -19,7 +19,7 @@ public class InterestingStamps {
 
 		if (sum > 100000 && stampOptions.size() > 4) { // less than 5
 			Collections.sort(stampOptions);
-			if (stampOptions.get(stampOptions.size() - 1) > 50) {
+			if (stampOptions.get(stampOptions.size() - 1) > 20) {
 				throw new IllegalArgumentException();
 			}
 		}
