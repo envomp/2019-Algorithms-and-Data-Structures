@@ -37,7 +37,7 @@ public class InterestingStamps {
 		ProperClass properClass = new ProperClass(sum, arr);
 
 		int n = arr.length;
-		int r = 1000;
+		int r = 10000;
 		properClass.CombinationRepetition(n, r);
 
 		if (properClass.answer == null) {
@@ -135,7 +135,7 @@ class ProperClass {
 	}
 
 	public static void main(String[] args) {
-		List<Integer> stamps = new ArrayList<>(Arrays.asList());
+		List<Integer> stamps = new ArrayList<>(Arrays.asList(1, 10, 24, 30, 33, 36));
 		System.out.println(InterestingStamps.findStamps(1, stamps));
 	}
 
