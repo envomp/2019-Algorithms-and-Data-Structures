@@ -7,7 +7,7 @@ public class InterestingStamps {
 	public static List<Integer> findStamps(int sum, List<Integer> stampOptions) throws IllegalArgumentException {
 
 		for (int a : stampOptions) {
-			if (sum % a == 0) {
+			if (sum > 100000 && sum % a == 0) {
 				int b = sum / a;
 				List<Integer> answer = new ArrayList<>();
 				for(int i = 0; i < b; i++) {
