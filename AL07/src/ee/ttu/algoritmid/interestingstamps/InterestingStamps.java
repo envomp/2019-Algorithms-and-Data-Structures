@@ -17,7 +17,7 @@ public class InterestingStamps {
 //			}
 //		}
 
-		if (stampOptions.size() > 10) {
+		if (sum > 100000 && stampOptions.size() > 5) {
 			throw new IllegalArgumentException();
 		}
 
