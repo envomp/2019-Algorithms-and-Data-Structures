@@ -6,6 +6,10 @@ public class InterestingStamps {
 
 	public static List<Integer> findStamps(int sum, List<Integer> stampOptions) throws IllegalArgumentException {
 
+		if (stampOptions.size() > 1000) {
+			throw new IllegalArgumentException();
+		}
+
 		if (sum == 0) {
 			return new ArrayList<>();
 		}
@@ -136,7 +140,7 @@ class ProperClass {
 
 	public static void main(String[] args) {
 		List<Integer> stamps = new ArrayList<>(Arrays.asList(1, 10, 24, 30, 33, 36));
-		System.out.println(InterestingStamps.findStamps(1, stamps));
+		System.out.println(InterestingStamps.findStamps(100, stamps));
 	}
 
 }
