@@ -53,6 +53,8 @@ public class InterestingStamps {
 			stampOptions.remove(max);
 			stampOptions.add(max);
 
+			throw new IndexOutOfBoundsException(String.valueOf(stampOptions));
+			
 //			int rem = 950000 % max;
 //
 //			int times = (950000 - rem) / max;
