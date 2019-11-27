@@ -48,8 +48,9 @@ public class InterestingStamps {
 		int r = 100000;
 
 		if (sum > 100000 && stampOptions.size() > 4) { // less than 5, max 50
+
 			ProperClass properClass = new ProperClass(sum, arr);
-			properClass.CombinationRepetition(n, r);
+			properClass.CombinationRepetition(n, r / 10);
 			List<Integer> a = new ArrayList<>();
 
 			for (int i = 0; i < 10; i++) {
