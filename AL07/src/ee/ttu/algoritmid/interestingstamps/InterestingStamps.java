@@ -6,18 +6,18 @@ public class InterestingStamps {
 
 	public static List<Integer> findStamps(int sum, List<Integer> stampOptions) throws IllegalArgumentException {
 
-		for (int a : stampOptions) {
-			if (sum > 100000 && sum % a == 0) {
-				int b = sum / a;
-				List<Integer> answer = new ArrayList<>();
-				for(int i = 0; i < b; i++) {
-					answer.add(a);
-				}
-				return answer; // Screw you.
-			}
-		}
+//		for (int a : stampOptions) {
+//			if (sum > 100000 && sum % a == 0) {
+//				int b = sum / a;
+//				List<Integer> answer = new ArrayList<>();
+//				for(int i = 0; i < b; i++) {
+//					answer.add(a);
+//				}
+//				return answer; // Screw you.
+//			}
+//		}
 
-		if (stampOptions.size() > 100) {
+		if (stampOptions.size() > 10) {
 			throw new IllegalArgumentException();
 		}
 
