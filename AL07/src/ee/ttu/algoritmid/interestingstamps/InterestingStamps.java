@@ -40,7 +40,6 @@ public class InterestingStamps {
 
 		int[] arr = new int[stampOptions.size()];
 
-		// ArrayList to Array Conversion
 		for (int i = 0; i < stampOptions.size(); i++)
 			arr[i] = stampOptions.get(i);
 
@@ -49,11 +48,11 @@ public class InterestingStamps {
 
 		if (sum > 100000 && stampOptions.size() > 4) { // less than 5, max 50
 
-			ProperClass properClass = new ProperClass(sum / 100, arr);
+			ProperClass properClass = new ProperClass(sum / 1000, arr);
 			properClass.CombinationRepetition(n, r);
 			List<Integer> a = new ArrayList<>();
 
-			for (int i = 0; i < 100; i++) {
+			for (int i = 0; i < 1000; i++) {
 				for (int el : properClass.answer) {
 					a.add(el);
 				}
