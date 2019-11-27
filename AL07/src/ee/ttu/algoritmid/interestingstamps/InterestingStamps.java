@@ -17,13 +17,6 @@ public class InterestingStamps {
 //			}
 //		}
 
-		if (sum > 100000 && stampOptions.size() > 4) { // less than 5
-			Collections.sort(stampOptions);
-			if (stampOptions.get(stampOptions.size() - 1) > 20) {
-				throw new IllegalArgumentException();
-			}
-		}
-
 		if (sum == 0) {
 			return new ArrayList<>();
 		}
@@ -51,11 +44,25 @@ public class InterestingStamps {
 		for (int i = 0; i < stampOptions.size(); i++)
 			arr[i] = stampOptions.get(i);
 
+		int n = arr.length;
+		int r = 100000;
+
+		if (sum > 100000 && stampOptions.size() > 4) { // less than 5, max 50
+			ProperClass properClass = new ProperClass(sum, arr);
+			properClass.CombinationRepetition(n, r);
+			List<Integer> a = new ArrayList<>();
+
+			for (int i = 0; i < 10; i++) {
+				for (int el : properClass.answer) {
+					a.add(el);
+				}
+			}
+
+			return a;
+		}
 
 		ProperClass properClass = new ProperClass(sum, arr);
 
-		int n = arr.length;
-		int r = 2500;
 		properClass.CombinationRepetition(n, r);
 
 		if (properClass.answer == null) {
