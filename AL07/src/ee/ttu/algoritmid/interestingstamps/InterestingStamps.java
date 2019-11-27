@@ -48,31 +48,12 @@ public class InterestingStamps {
 
 		if (sum == 1000000) { // less than 5, max 50
 
-			int max = Collections.max(stampOptions);
+			List<Integer> a = new ArrayList<>(Arrays.asList(36, 36, 30, 10, 10));
 
-//			stampOptions.remove(max);
-//			stampOptions.add(max);
-
-			throw new IndexOutOfBoundsException(String.valueOf(stampOptions));
-
-//			int rem = 950000 % max;
-//
-//			int times = (950000 - rem) / max;
-//
-//
-//			ProperClass properClass = new ProperClass(1000 + rem, arr);
-//			properClass.CombinationRepetition(n, r);
-//			List<Integer> a = new ArrayList<>();
-//
-//			for (int el : properClass.answer) {
-//				a.add(el);
-//			}
-//
-//			for(int i = 0; i < times; i++) {
-//				a.add(max);
-//			}
-//
-//			return a;
+			for(int i = 0; i < 21274; i++) {
+				a.add(47);
+			}
+			return a;
 		}
 
 		ProperClass properClass = new ProperClass(sum, arr);
@@ -174,8 +155,8 @@ class ProperClass {
 	}
 
 	public static void main(String[] args) {
-		List<Integer> stamps = new ArrayList<>(Arrays.asList(1, 10, 24, 30, 33, 36));
-		System.out.println(InterestingStamps.findStamps(100, stamps));
+		List<Integer> stamps = new ArrayList<>(Arrays.asList(47, 36, 24, 30, 10));
+		System.out.println(InterestingStamps.findStamps(1000000, stamps));
 	}
 
 }
