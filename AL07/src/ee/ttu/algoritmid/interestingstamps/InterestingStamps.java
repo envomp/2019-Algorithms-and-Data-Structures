@@ -1,15 +1,22 @@
 package ee.ttu.algoritmid.interestingstamps;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class InterestingStamps {
 
 	public static List<Integer> findStamps(int sum, List<Integer> stampOptions) throws IllegalArgumentException {
 
+		if (sum == 0) {
+			return new ArrayList<>();
+		}
+
+		stampOptions = new ArrayList<>(new HashSet<>(stampOptions));
 		stampOptions.sort(Collections.reverseOrder());
+
+		if (stampOptions.get(stampOptions.size() - 1) > sum) {
+			throw new IllegalArgumentException();
+		}
+
 		List<Integer> dumb = new ArrayList<>();
 		for (int el : stampOptions) {
 			if (el % 10 == 0 || el == 1) {
@@ -111,7 +118,7 @@ class ProperClass {
 
 			if (newSum == this.sum && (depth < this.depth || (depth == this.depth && bad < this.bad))) {
 				this.answer = new int[depth + 1];
-				System.arraycopy( chosen, 0, this.answer, 0, depth + 1 );
+				System.arraycopy(chosen, 0, this.answer, 0, depth + 1);
 				this.depth = depth;
 				this.bad = bad;
 
@@ -129,7 +136,7 @@ class ProperClass {
 
 	public static void main(String[] args) {
 		List<Integer> stamps = new ArrayList<>(Arrays.asList(10, 24, 30, 33, 36));
-		System.out.println(InterestingStamps.findStamps(2, stamps));
+		System.out.println(InterestingStamps.findStamps(0, stamps));
 	}
 
 }
