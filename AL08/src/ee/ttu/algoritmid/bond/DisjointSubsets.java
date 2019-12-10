@@ -11,7 +11,7 @@ public class DisjointSubsets {
 		try {
 			return groups.get(element);
 		} catch (Exception e) {
-			throw new IllegalArgumentException(e);
+			throw new IllegalArgumentException();
 		}
 	}
 
@@ -20,7 +20,7 @@ public class DisjointSubsets {
 		try {
 			return groups.get(element).getParent().key;
 		} catch (Exception e) {
-			throw new IllegalArgumentException(e);
+			throw new IllegalArgumentException();
 		}
 	}
 
