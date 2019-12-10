@@ -1,5 +1,6 @@
 package ee.ttu.algoritmid.bond;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DisjointSubsets {
@@ -61,10 +62,16 @@ class Node8 {
 	}
 
 	public Node8 getParent() {
-		if (this.key.equals(parent.key)) {
-			return this;
+		Node8 last = this;
+		ArrayList<Node8> toChange = new ArrayList<>();
+		while (!last.parent.key.equals(last.key)) {
+			toChange.add(last);
+			last = last.parent;
 		}
-		return parent.getParent();
+		for (Node8 el : toChange) {
+			el.parent = last;
+		}
+		return last;
 	}
 
 	@Override
