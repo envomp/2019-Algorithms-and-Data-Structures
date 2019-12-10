@@ -14,9 +14,11 @@ public class DisjointSubsets {
 
 	public String find(String element) throws IllegalArgumentException {
 		try {
-			return groups.get(element).getParent().key;
+			Node8 guy = groups.get(element);
+			guy.parent = guy.getParent();
+			return guy.parent.key;
 		} catch (Exception e) {
-			throw new IllegalArgumentException(String.valueOf(groups));
+			throw new IllegalArgumentException();
 		}
 	}
 
@@ -32,7 +34,7 @@ public class DisjointSubsets {
 			}
 
 		} catch (Exception e) {
-			throw new IllegalArgumentException(String.valueOf(groups));
+			throw new IllegalArgumentException();
 		}
 	}
 
