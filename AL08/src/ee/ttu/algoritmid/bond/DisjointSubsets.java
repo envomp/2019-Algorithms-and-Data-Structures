@@ -71,6 +71,7 @@ class Node8 {
 		if (this.key.equals(parent.key)) {
 			return this;
 		}
-		return parent.getParent();
+		parent = parent.getParent();
+		return parent;
 	}
 }
