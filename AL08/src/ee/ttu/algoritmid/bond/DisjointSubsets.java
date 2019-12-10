@@ -11,7 +11,7 @@ public class DisjointSubsets {
 		try {
 			return groups.get(element);
 		} catch (Exception e) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(e);
 		}
 	}
 
@@ -20,21 +20,14 @@ public class DisjointSubsets {
 		try {
 			return groups.get(element).getParent().key;
 		} catch (Exception e) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(e);
 		}
 	}
 
-	// should throw IllegalArgumentException if any of elements is not present
 	public void union(String element1, String element2) throws IllegalArgumentException {
-		Node8 parent1;
-		Node8 parent2;
 		try {
-			Node8 duud1 = groups.get(element1);
-			Node8 duud2 = groups.get(element2);
-			parent1 = duud1.getParent();
-			parent2 = duud2.getParent();
-			duud1.parent = parent1;
-			duud2.parent = parent2;
+			Node8 parent1 = groups.get(element1).getParent();
+			Node8 parent2 = groups.get(element2).getParent();
 
 			if (parent1.key.equals("A") || parent1.key.equals("U")) {
 				parent2.parent = parent1.parent;
@@ -45,7 +38,6 @@ public class DisjointSubsets {
 		} catch (Exception e) {
 			throw new IllegalArgumentException(e);
 		}
-
 	}
 
 	public void addSubset(String element) throws IllegalArgumentException {
@@ -56,9 +48,7 @@ public class DisjointSubsets {
 			groups.put(element, new Node8(element));
 
 		}
-
 	}
-
 }
 
 class Node8 {

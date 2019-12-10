@@ -48,14 +48,16 @@ public class AL08 {
 		AL08 al08 = new AL08();
 		al08.disjointSubsets.addSubset("a");
 		al08.disjointSubsets.addSubset("b");
-		al08.disjointSubsets.addSubset("x");
 		al08.disjointSubsets.addSubset("c");
 		al08.disjointSubsets.addSubset("d");
-		al08.unfriendly("d");
+		al08.disjointSubsets.addSubset("x");
+		al08.disjointSubsets.addSubset("y");
 		al08.talkedToEachOther("a", "b");
-		al08.talkedToEachOther("a", "x");
-		al08.talkedToEachOther("c", "a");
-		al08.talkedToEachOther("a", "d");
+		al08.talkedToEachOther("c", "d");
+		al08.talkedToEachOther("c", "x");
+		al08.talkedToEachOther("x", "y");
+//		al08.unfriendly("d");
+//		al08.talkedToEachOther("a", "d");
 		System.out.println(al08.memberOfNetwork("a"));
 		System.out.println(al08.memberOfNetwork("b"));
 		System.out.println(al08.memberOfNetwork("c"));
@@ -67,5 +69,6 @@ public class AL08 {
 		System.out.println(al08.getDisjointSubsets().find("c"));
 		System.out.println(al08.getDisjointSubsets().find("d"));
 		System.out.println(al08.getDisjointSubsets().find("x"));
+		System.out.println(al08.getDisjointSubsets().find("y"));
 	}
 }
