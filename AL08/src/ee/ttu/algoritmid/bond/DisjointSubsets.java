@@ -68,4 +68,12 @@ class Node8 {
 		}
 		return parent.getParent();
 	}
+
+	@Override
+	public String toString() {
+		return "Node8{" +
+				"parent=" + parent.key +
+				", key='" + key + '\'' +
+				'}';
+	}
 }
