@@ -25,12 +25,12 @@ public class AL08 {
 	}
 
 	public void friendly(String name) {
-		disjointSubsets.lessAutisticFind(name).getParent().key = "A";
+		disjointSubsets.union(name, "A");
 
 	}
 
 	public void unfriendly(String name) {
-		disjointSubsets.lessAutisticFind(name).getParent().key = "U";
+		disjointSubsets.union(name, "U");
 	}
 
 	public Network memberOfNetwork(String name) {
@@ -52,12 +52,13 @@ public class AL08 {
 		al08.disjointSubsets.addSubset("d");
 		al08.disjointSubsets.addSubset("x");
 		al08.disjointSubsets.addSubset("y");
+		System.out.println(al08.disjointSubsets.groups);
 		al08.talkedToEachOther("a", "b");
 		al08.talkedToEachOther("c", "d");
 		al08.talkedToEachOther("c", "x");
 		al08.talkedToEachOther("x", "y");
-//		al08.unfriendly("d");
-//		al08.talkedToEachOther("a", "d");
+		al08.unfriendly("d");
+		al08.talkedToEachOther("a", "d");
 		System.out.println(al08.memberOfNetwork("a"));
 		System.out.println(al08.memberOfNetwork("b"));
 		System.out.println(al08.memberOfNetwork("c"));

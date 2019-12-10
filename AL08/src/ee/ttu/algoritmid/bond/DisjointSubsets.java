@@ -6,13 +6,9 @@ public class DisjointSubsets {
 
 	public HashMap<String, Node8> groups = new HashMap<>();
 
-
-	public Node8 lessAutisticFind(String element) throws IllegalArgumentException {
-		try {
-			return groups.get(element);
-		} catch (Exception e) {
-			throw new IllegalArgumentException(String.valueOf(groups));
-		}
+	public DisjointSubsets() {
+		addSubset("A");
+		addSubset("U");
 	}
 
 
