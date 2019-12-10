@@ -25,13 +25,12 @@ public class AL08 {
 	}
 
 	public void friendly(String name) {
-
-		disjointSubsets.lessAutisticFind(name).parent.key = "A";
+		disjointSubsets.lessAutisticFind(name).getParent().key = "A";
 
 	}
 
 	public void unfriendly(String name) {
-		disjointSubsets.lessAutisticFind(name).parent.key = "U";
+		disjointSubsets.lessAutisticFind(name).getParent().key = "U";
 	}
 
 	public Network memberOfNetwork(String name) {
@@ -49,12 +48,25 @@ public class AL08 {
 		AL08 al08 = new AL08();
 		al08.disjointSubsets.addSubset("a");
 		al08.disjointSubsets.addSubset("b");
-		al08.talkedToEachOther("a", "b");
+		al08.disjointSubsets.addSubset("x");
+		al08.disjointSubsets.addSubset("c");
+		al08.disjointSubsets.addSubset("d");
 		al08.friendly("a");
-		System.out.println(al08.disjointSubsets.find("a"));
-		System.out.println(al08.disjointSubsets.find("b"));
-		System.out.println(al08.disjointSubsets.groups.get("b").parent.key);
-		System.out.println(al08.memberOfNetwork("b"));
+		al08.talkedToEachOther("a", "b");
+		al08.talkedToEachOther("b", "x");
+		al08.talkedToEachOther("c", "x");
+		al08.talkedToEachOther("c", "d");
+		al08.talkedToEachOther("a", "d");
 		System.out.println(al08.memberOfNetwork("a"));
+		System.out.println(al08.memberOfNetwork("b"));
+		System.out.println(al08.memberOfNetwork("c"));
+		System.out.println(al08.memberOfNetwork("d"));
+		System.out.println(al08.memberOfNetwork("x"));
+		System.out.println();
+		System.out.println(al08.getDisjointSubsets().find("a"));
+		System.out.println(al08.getDisjointSubsets().find("b"));
+		System.out.println(al08.getDisjointSubsets().find("c"));
+		System.out.println(al08.getDisjointSubsets().find("d"));
+		System.out.println(al08.getDisjointSubsets().find("x"));
 	}
 }
