@@ -51,11 +51,10 @@ public class AL08 {
 		al08.disjointSubsets.addSubset("x");
 		al08.disjointSubsets.addSubset("c");
 		al08.disjointSubsets.addSubset("d");
-		al08.friendly("a");
+		al08.unfriendly("d");
 		al08.talkedToEachOther("a", "b");
-		al08.talkedToEachOther("b", "x");
-		al08.talkedToEachOther("c", "x");
-		al08.talkedToEachOther("c", "d");
+		al08.talkedToEachOther("a", "x");
+		al08.talkedToEachOther("c", "a");
 		al08.talkedToEachOther("a", "d");
 		System.out.println(al08.memberOfNetwork("a"));
 		System.out.println(al08.memberOfNetwork("b"));
