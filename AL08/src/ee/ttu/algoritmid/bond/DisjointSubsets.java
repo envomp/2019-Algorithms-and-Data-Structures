@@ -11,7 +11,7 @@ public class DisjointSubsets {
 		try {
 			return groups.get(element);
 		} catch (Exception e) {
-			throw new IllegalArgumentException(e.getMessage());
+			throw new IllegalArgumentException();
 		}
 	}
 
@@ -20,7 +20,7 @@ public class DisjointSubsets {
 		try {
 			return groups.get(element).getParent().key;
 		} catch (Exception e) {
-			throw new IllegalArgumentException(e.getMessage());
+			throw new IllegalArgumentException();
 		}
 	}
 
@@ -29,17 +29,22 @@ public class DisjointSubsets {
 		Node8 parent1;
 		Node8 parent2;
 		try {
-			parent1 = groups.get(element1).getParent();
-			parent2 = groups.get(element2).getParent();
-		} catch (Exception e) {
-			throw new IllegalArgumentException(e.getMessage());
-		}
-		if (parent1.key.equals("A") || parent1.key.equals("U")) {
-			parent2.parent = parent1.parent;
-		} else {
-			parent1.parent = parent2.parent;
-		}
+			Node8 duud1 = groups.get(element1);
+			Node8 duud2 = groups.get(element2);
+			parent1 = duud1.getParent();
+			parent2 = duud2.getParent();
+			duud1.parent = parent1;
+			duud2.parent = parent2;
 
+			if (parent1.key.equals("A") || parent1.key.equals("U")) {
+				parent2.parent = parent1.parent;
+			} else {
+				parent1.parent = parent2.parent;
+			}
+
+		} catch (Exception e) {
+			throw new IllegalArgumentException(e);
+		}
 
 	}
 
@@ -71,7 +76,6 @@ class Node8 {
 		if (this.key.equals(parent.key)) {
 			return this;
 		}
-		parent = parent.getParent();
-		return parent;
+		return parent.getParent();
 	}
 }
