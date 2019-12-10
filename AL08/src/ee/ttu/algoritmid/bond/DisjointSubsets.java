@@ -26,19 +26,21 @@ public class DisjointSubsets {
 
 	// should throw IllegalArgumentException if any of elements is not present
 	public void union(String element1, String element2) throws IllegalArgumentException {
+		Node8 parent1;
+		Node8 parent2;
 		try {
-			Node8 parent1 = groups.get(element1).getParent();
-			Node8 parent2 = groups.get(element2).getParent();
-
-			if (parent1.key.equals("A") || parent1.key.equals("U")) {
-				parent2.parent = parent1.parent;
-			} else {
-				parent1.parent = parent2.parent;
-			}
-
+			parent1 = groups.get(element1).getParent();
+			parent2 = groups.get(element2).getParent();
 		} catch (Exception e) {
 			throw new IllegalArgumentException(e.getMessage());
 		}
+		if (parent1.key.equals("A") || parent1.key.equals("U")) {
+			parent2.parent = parent1.parent;
+		} else {
+			parent1.parent = parent2.parent;
+		}
+
+
 	}
 
 	public void addSubset(String element) throws IllegalArgumentException {
